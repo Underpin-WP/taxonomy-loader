@@ -2,7 +2,7 @@
   "name": "underpin/taxonomy-loader",
   "description": "Taxonomy loader for Underpin",
   "type": "library",
-  "license": "GPL 2.0",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Alex Standiford",
