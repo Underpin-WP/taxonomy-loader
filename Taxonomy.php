@@ -162,7 +162,7 @@ abstract class Taxonomy {
 	 *                         WP_Error otherwise.
 	 */
 	protected function _insert( $term, $args ) {
-		return wp_insert_term( $term, $args, $this->id );
+		return wp_insert_term( $term, $this->id, $args );
 	}
 
 	/**
@@ -194,10 +194,10 @@ abstract class Taxonomy {
 			);
 		}
 
-		$saved = isset( $id ) ? $this->_update( $id, $args ) : $this->_insert( $args );
+		$saved = isset( $id ) ? $this->_update( $id, $args ) : $this->_insert( $name, $args );
 
 		if ( is_wp_error( $saved ) ) {
-			underpin()->logger()->log_wp_error( $saved );
+			underpin()->logger()->log_wp_error( 'error', $saved );
 		} else {
 			underpin()->logger()->log(
 				'notice',

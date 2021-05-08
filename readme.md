@@ -1,6 +1,6 @@
 # Underpin Taxonomy Loader
 
-Loader That assists with registering post type taxonomies to a WordPress website.
+Loader That assists with registering taxonomy taxonomies to a WordPress website.
 
 ## Installation
 
@@ -41,4 +41,35 @@ Alternatively, you can extend `Taxonomy` and reference the extended class direct
 
 ```php
 underpin()->taxonomies()->add('taxonomy-key','Namespace\To\Class');
+```
+
+## Querying
+
+A Taxonomy instance includes a method, called `query`, which serves as a wrapper for `new WP_Term_Query`.
+
+This encapsulates queries for this taxonomy in a method, and gives you a place to override exactly _how_ this taxonomy
+is queried, should you decide to extend the class.
+
+```php
+underpin()->taxonomies()->get( 'taxonomy' )->query();
+```
+
+## Editing Terms
+
+Like querying, Taxonomy instances includes a method called `save` which serves as a wrapper for `wp_insert_term`
+and `wp_update_term`. It also includes notice-logging so you can track what happens on a request.
+
+This encapsulates save actions for this taxonomy in a set of methods, and gives you a place to override exactly _how_
+this taxonomy is saved, should you decide to extend the class.
+
+```php
+underpin()->taxonomies()->get( 'taxonomy' )->save( [/* see wp_insert_post */] );
+```
+
+## Deleting Terms
+
+This works in the same way as `save` and `query`. It includes logging, and provides a way to encapsulate the action.
+
+```php
+underpin()->taxonomies()->get( 'taxonomy' )->delete( $term );
 ```
