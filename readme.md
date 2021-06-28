@@ -28,10 +28,10 @@ A very basic example could look something like this.
 // Register taxonomy
 underpin()->taxonomies()->add( 'taxonomy', [
 	'post_type'   => 'post',                        // Defaults to post.
-	'id'          => 'ingredients',                 // Required. See register_post_type
+	'id'          => 'ingredients',                 // Required. See register_taxonomy
 	'description' => 'Ingredients for this recipe', // Human-readable description.
 	'name'        => 'Ingredients',                 // Human-readable name. Usually plural. Will set "label" argument if name is unset in args.
-	'args'        => [                              // Default atts. See register_post_type
+	'args'        => [                              // Default atts. See register_taxonomy
 		'public' => true,
 	],
 ] );
