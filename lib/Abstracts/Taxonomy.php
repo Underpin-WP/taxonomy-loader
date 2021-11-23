@@ -7,11 +7,12 @@
  */
 
 
-namespace Underpin_Taxonomies\Abstracts;
+namespace Underpin\Taxonomies\Abstracts;
 
 
+use Underpin\Loaders\Logger;
 use Underpin\Traits\Feature_Extension;
-use function Underpin\underpin;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -74,9 +75,9 @@ abstract class Taxonomy {
 		$registered = register_taxonomy( $this->id, $this->post_type, $this->args );
 
 		if ( is_wp_error( $registered ) ) {
-			underpin()->logger()->log_wp_error( 'error', $registered );
+			Logger::log_wp_error( 'error', $registered );
 		} else {
-			underpin()->logger()->log(
+			Logger::log(
 				'notice',
 				'registered_taxonomy',
 				'The taxonomy ' . $this->name . ' has been registered to ' . $this->post_type . '.',
@@ -186,7 +187,7 @@ abstract class Taxonomy {
 		}
 
 		if ( ! isset( $name ) && ! isset( $id ) ) {
-			return underpin()->logger()->log_as_error(
+			return Logger::log_as_error(
 				'error',
 				'save_term_invalid_args',
 				'To save a term, you must provide an id or a term name to create.',
@@ -197,9 +198,9 @@ abstract class Taxonomy {
 		$saved = isset( $id ) ? $this->_update( $id, $args ) : $this->_insert( $name, $args );
 
 		if ( is_wp_error( $saved ) ) {
-			underpin()->logger()->log_wp_error( 'error', $saved );
+			Logger::log_wp_error( 'error', $saved );
 		} else {
-			underpin()->logger()->log(
+			Logger::log(
 				'notice',
 				$this->id . '_saved',
 				'A ' . $this->id . ' term was saved',
@@ -242,9 +243,9 @@ abstract class Taxonomy {
 				'The provided term could not be deleted because it does not exist',
 				[ 'args' => $args, 'term' => $term ]
 			);
-			underpin()->logger()->log_wp_error( 'warning', $deleted );
+			Logger::log_wp_error( 'warning', $deleted );
 		} elseif ( is_wp_error( $deleted ) ) {
-			underpin()->logger()->log_wp_error( 'error', $deleted );
+			Logger::log_wp_error( 'error', $deleted );
 		}
 
 		return $deleted;
