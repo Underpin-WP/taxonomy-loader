@@ -1,10 +1,10 @@
 <?php
 
-namespace Underpin_Taxonomies\Factories;
+namespace Underpin\Taxonomies\Factories;
 
 
 use Underpin\Traits\Instance_Setter;
-use Underpin_Taxonomies\Abstracts\Taxonomy;
+use Underpin\Taxonomies\Abstracts\Taxonomy;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
