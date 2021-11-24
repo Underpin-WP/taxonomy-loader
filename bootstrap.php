@@ -8,6 +8,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Add this loader.
 Underpin::attach( 'setup', new \Underpin\Factories\Observers\Loader( 'taxonomies', [
-	'instance' => 'Underpin\Taxonomies\Abstracts\Taxonomy',
-	'default'  => 'Underpin\Taxonomies\Factories\Taxonomy_Instance',
+	'abstraction_class' => 'Underpin\Taxonomies\Abstracts\Taxonomy',
+	'default_factory'  => 'Underpin\Taxonomies\Factories\Taxonomy_Instance',
 ] ) );
